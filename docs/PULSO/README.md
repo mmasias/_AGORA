@@ -31,15 +31,15 @@ Un gestor de encuestas docentes vinculado al ecosistema académico. Permite dise
 |---|:-:|---|
 | Complejidad técnica | 🟡 Media | El motor de encuestas (diseño de preguntas, distribución, recogida de respuestas) es un dominio resuelto, pero integrarlo con el catálogo de CELDA y garantizar el anonimato de las respuestas añade complejidad real. |
 | Complejidad de dominio | 🟡 Media | Las encuestas docentes tienen requisitos específicos: anonimato de las respuestas frente a trazabilidad del contexto, umbrales mínimos de participación para publicar resultados, ventanas temporales ligadas al calendario académico. No es texto libre — hay reglas institucionales. |
-| Dependencias | 🟡 Media | Depende de CELDA para el catálogo de asignaturas, programas y profesores. Depende del LMS (via PANAL) para la distribución a alumnos si se quiere que llegue directamente al campus virtual. |
+| Dependencias | 🟡 Media | Depende de CELDA para el catálogo de asignaturas, programas y profesores. Depende de GUIAA para el censo de alumnos de cada asignatura (quiénes la cursan en cada curso académico): sin censo no hay lista de destinatarios verificable ni control de participación que preserve el anonimato. Depende del LMS (via PANAL) para la distribución si se quiere que llegue directamente al campus virtual. |
 | **Índice combinado** | 🟡 **Media** | Un proyecto con complejidad real pero acotada. El riesgo principal es el anonimato: garantizar que las respuestas no son trazables hasta el alumno individual mientras se mantiene el contexto académico es un problema de diseño que hay que resolver antes de escribir código. |
 
 </div>
 
 ### Decisiones de diseño a tomar antes de construir
 
-- **¿Cómo se garantiza el anonimato?** Las respuestas deben ser anónimas para el profesor evaluado pero contextualizadas por asignatura y curso. El mecanismo de separación entre identidad del respondente y contenido de la respuesta es la decisión más crítica del proyecto.
-- **¿Quién distribuye las encuestas y cómo llegan a los alumnos?** Via email, via LMS, via PANAL. El canal de distribución condiciona la arquitectura.
+- **¿Cómo se garantiza el anonimato?** Las respuestas deben ser anónimas para el profesor evaluado pero contextualizadas por asignatura y curso. El mecanismo de separación entre identidad del respondente (quiénes ya participaron, contra el censo de GUIAA) y contenido de la respuesta (qué contestaron, anónimo para el análisis) es la decisión más crítica del proyecto.
+- **¿Quién distribuye las encuestas y cómo llegan a los alumnos?** El censo de destinatarios lo suministra GUIAA; el canal puede ser email, LMS via PANAL, u otro. El canal de distribución condiciona la arquitectura.
 - **¿Qué umbral mínimo de participación se exige para publicar resultados?** Una encuesta con 2 respuestas sobre 30 alumnos no es representativa. La política de umbrales es institucional.
 - **¿Las encuestas son plantillas reutilizables o se diseñan de cero cada vez?** Un catálogo de plantillas institucionales reduce la carga del gabinete de calidad y garantiza comparabilidad longitudinal.
 

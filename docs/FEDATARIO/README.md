@@ -32,22 +32,22 @@ Es un servicio de valor añadido sobre el ecosistema existente, orientado a alum
 | Dimensión | Nivel | Justificación |
 |---|:-:|---|
 | Complejidad técnica | 🟡 Media | La generación del documento en sí reutiliza el render de CELDA (Jinja2/WeasyPrint). El reto técnico está en la firma digital y la verificación de autenticidad del documento generado. |
-| Complejidad de dominio | 🔴 Alta | Introduce la entidad **Alumno** y su relación con asignaturas y cursos académicos, que no existe en ningún punto del ecosistema actual. Ese modelo de datos no está definido, no hay datos históricos y depende de sistemas externos (el SGA de la universidad) para obtener el itinerario real de cada alumno. |
-| Dependencias | 🔴 Alta | Depende de CELDA para el historial de guías aprobadas. Depende de un sistema externo (SGA, Secretaría académica) para el itinerario real del alumno. Esa integración externa es la dependencia más incierta del roadmap. |
+| Complejidad de dominio | 🔴 Alta | No modela el censo de alumnos — el itinerario real se consulta a GUIAA por curso académico y asignatura — pero sí tiene que congelarlo: un documento certificado no puede sellarse contra una consulta viva, así que FEDATARIO persiste su propio snapshot del itinerario en el momento de la certificación, con firma digital y verificación de autenticidad. |
+| Dependencias | 🔴 Alta | Depende de CELDA para el historial de guías aprobadas. Depende de GUIAA para el itinerario real de cada alumno: la integración con el ERP académico de la universidad es la dependencia más incierta del roadmap. |
 | **Índice combinado** | 🔴 **Alta** | El proyecto con más trabajo de cero: introduce entidades nuevas, depende de integración externa y tiene requisitos de autenticidad documental que ningún otro satélite tiene. El modelo de negocio (servicio de pago) añade además requisitos de gestión que el ecosistema actual no tiene. |
 
 </div>
 
 ### Decisiones de diseño a tomar antes de construir
 
-- **¿Cómo llega el itinerario del alumno al sistema?** ¿Se importa del SGA vía API, se introduce manualmente por secretaría, o el propio alumno lo declara y secretaría lo certifica? Cada opción tiene implicaciones de fiabilidad y carga operativa muy distintas.
+- **¿Cómo llega el itinerario del alumno al sistema?** GUIAA lo suministra por consulta (qué alumno cursó qué asignatura en qué programa y curso). La decisión restante es cuándo se congela: el snapshot que se certifica debe capturarse en el momento de la generación y quedar inmutable, sin reconsultas posteriores.
 - **¿Cómo se certifica la autenticidad del documento?** Un PDF con firma digital verificable, un código QR que enlaza a una versión en línea comprobable, o un sello institucional tradicional. La elección tiene implicaciones legales.
 - **¿Qué ocurre si una guía del itinerario fue revocada o corregida después?** CELDA mantiene el historial, pero ¿qué versión de la guía se incluye en el documento: la vigente al finalizar el curso o la última aprobada?
 - **¿Cómo se gestiona el modelo de pago?** Pago por documento, por alumno, suscripción institucional. La decisión de negocio condiciona la arquitectura del servicio.
 
 ### Cómo abordarlo
 
-1. Resolver primero el modelo de datos del Alumno y su itinerario, en colaboración con secretaría académica. Sin eso, no hay proyecto.
+1. Resolver primero el contrato con GUIAA (consulta del itinerario) y el formato del snapshot certificado, en colaboración con secretaría académica. Sin eso, no hay proyecto.
 2. Definir el mecanismo de autenticidad documental con el área jurídica de la institución antes de construir nada.
-3. Construir el generador de documentos reutilizando el render de CELDA como primera prueba de concepto, con datos introducidos manualmente.
-4. Integrar con el SGA como segunda fase, una vez validado el documento generado con secretaría académica.
+3. Construir el generador de documentos reutilizando el render de CELDA como primera prueba de concepto, con itinerarios introducidos manualmente.
+4. Integrar con GUIAA como segunda fase, una vez validado el documento generado con secretaría académica.

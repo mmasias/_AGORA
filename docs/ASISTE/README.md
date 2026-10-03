@@ -34,7 +34,7 @@ Genera el informe de trazabilidad de eventos que permite a secretaría académic
 |---|:-:|---|
 | Complejidad técnica | 🔴 Alta | El registro de asistencia en tiempo real en una sala con 30 alumnos es un problema de UX e infraestructura no trivial. QR dinámico, NFC, app móvil, lista manual digitalizada: cada mecanismo tiene sus propias implicaciones técnicas y de fiabilidad. |
 | Complejidad de dominio | 🟡 Media | Las reglas de asistencia varían por asignatura (algunas exigen un mínimo para presentarse a examen), por modalidad (presencial, semipresencial, online) y por tipo de evento (clase obligatoria vs. tutoría voluntaria). El modelo tiene que ser flexible sin ser caótico. |
-| Dependencias | 🟡 Media | Depende de CELDA para la planificación de sesiones y del catálogo de asignaturas y grupos. Depende de SIGHOR para saber qué grupo está en qué aula en cada franja. |
+| Dependencias | 🟡 Media | Depende de CELDA para la planificación de sesiones y del catálogo de asignaturas y grupos. Depende de SIGHOR para saber qué grupo está en qué aula en cada franja. Depende de GUIAA para el censo de alumnos de cada grupo: registrar la asistencia del alumno requiere saber qué alumnos pertenecen al grupo. |
 | **Índice combinado** | 🔴 **Alta** | La complejidad técnica del mecanismo de registro es el reto principal. El dominio es manejable, pero elegir mal el mecanismo de captura (algo que los alumnos no usan o que el profesor no puede operar en los primeros 5 minutos de clase) hace que el sistema no se adopte, independientemente de lo bien construido que esté. |
 
 </div>
