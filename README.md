@@ -19,12 +19,12 @@ Mapa de proyectos del ecosistema académico construido sobre [CELDA](https://git
 
 | Fase 0 | Fase I | Fase II | Fase III |
 |---|---|---|---|
-| **CELDA v0.0.1**<br><sub>Catálogo Electrónico Ligero de Documentación Académica (el proyecto original, agosto/septiembre 2026)</sub> | **CELDA v0.10.1**<br><sub>El proyecto en el punto en el que lo tenemos hoy</sub> | **MERITOS**<br><sub>Modelo de Expedientes y Registros de la Información de Trayectoria Ocupacional</sub> | **ASISTE**<br><sub>Aplicación de Seguimiento e Informe Sobre la Trazabilidad de Eventos</sub> |
-| | | **PRISMA**<br><sub>Plataforma de Representación e Integración de Señales y Métricas Académicas</sub> | **FEDATARIO**<br><sub>Generación de documento oficial personalizado por alumno con las guías de su itinerario (servicio de pago)</sub> |
-| | | **PULSO**<br><sub>Plataforma Unificada de Levantamiento y Seguimiento de Opiniones</sub> | **SIGHOR**<br><sub>Sistema de Gestión de Horarios</sub> |
-| | | **VITRINA**<br><sub>Visibilizador Institucional de Titulaciones, Rubros e Información Normativa Académica</sub> | **ACTIVITAT**<br><sub>Gestor de actividad docente de los profesores</sub> |
-| | | **CITA**<br><sub>Catálogo e Indexador de Textos Académicos</sub> | |
-| | | **CARGA**<br><sub>Control y Análisis del Reparto y Gestión de Actividades</sub> | |
+| **CELDA v0.0.1** | **CELDA v0.10.1** | **MERITOS** | **ASISTE** |
+| | | **PRISMA** | **FEDATARIO** |
+| | | **PULSO** | **SIGHOR** |
+| | | **VITRINA** | **ACTIVITAT** |
+| | | **CITA** | |
+| | | **CARGA** | |
 
 ### Expansión de acrónimos
 
