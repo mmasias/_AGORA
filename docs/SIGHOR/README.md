@@ -2,7 +2,7 @@
 
 ## ¿Por qué?
 
-La planificación docente de CELDA sabe qué se enseña y cuándo, pero no sabe en qué aula ni a qué hora. Los horarios académicos — qué grupo tiene qué asignatura, en qué franja y en qué espacio — viven en sistemas propietarios, hojas de cálculo o en el LMS, desconectados del resto del ecosistema.
+La planificación docente de CELDA sabe qué se enseña y cuándo, pero no sabe en qué aula ni a qué hora. Los horarios académicos - qué grupo tiene qué asignatura, en qué franja y en qué espacio - viven en sistemas propietarios, hojas de cálculo o en el LMS, desconectados del resto del ecosistema.
 
 Esa desconexión tiene consecuencias concretas: CARGA no puede detectar solapamientos de evaluación sin saber cuándo son realmente los exámenes, ASISTE no puede vincular un registro de presencia a un aula sin saber qué grupo estaba ahí, y ningún alumno tiene una fuente única y fiable para consultar su horario.
 

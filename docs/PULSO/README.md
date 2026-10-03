@@ -30,7 +30,7 @@ Un gestor de encuestas docentes vinculado al ecosistema académico. Permite dise
 | Dimensión | Nivel | Justificación |
 |---|:-:|---|
 | Complejidad técnica | 🟡 Media | El motor de encuestas (diseño de preguntas, distribución, recogida de respuestas) es un dominio resuelto, pero integrarlo con el catálogo de CELDA y garantizar el anonimato de las respuestas añade complejidad real. |
-| Complejidad de dominio | 🟡 Media | Las encuestas docentes tienen requisitos específicos: anonimato de las respuestas frente a trazabilidad del contexto, umbrales mínimos de participación para publicar resultados, ventanas temporales ligadas al calendario académico. No es texto libre — hay reglas institucionales. |
+| Complejidad de dominio | 🟡 Media | Las encuestas docentes tienen requisitos específicos: anonimato de las respuestas frente a trazabilidad del contexto, umbrales mínimos de participación para publicar resultados, ventanas temporales ligadas al calendario académico. No es texto libre - hay reglas institucionales. |
 | Dependencias | 🟡 Media | Depende de CELDA para el catálogo de asignaturas, programas y profesores. Depende de GUIAA para el censo de alumnos de cada asignatura (quiénes la cursan en cada curso académico): sin censo no hay lista de destinatarios verificable ni control de participación que preserve el anonimato. Depende del LMS (via PANAL) para la distribución si se quiere que llegue directamente al campus virtual. |
 | **Índice combinado** | 🟡 **Media** | Un proyecto con complejidad real pero acotada. El riesgo principal es el anonimato: garantizar que las respuestas no son trazables hasta el alumno individual mientras se mantiene el contexto académico es un problema de diseño que hay que resolver antes de escribir código. |
 

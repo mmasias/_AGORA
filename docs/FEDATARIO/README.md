@@ -2,7 +2,7 @@
 
 ## ¿Por qué?
 
-Un alumno que termina su titulación cursó cada asignatura en un curso académico concreto, con una guía docente concreta aprobada para ese año. Ese documento — la guía docente oficial que rigió su formación en esa asignatura ese año — es la evidencia académica de lo que aprendió y cómo fue evaluado.
+Un alumno que termina su titulación cursó cada asignatura en un curso académico concreto, con una guía docente concreta aprobada para ese año. Ese documento - la guía docente oficial que rigió su formación en esa asignatura ese año - es la evidencia académica de lo que aprendió y cómo fue evaluado.
 
 Hoy, obtener ese documento requiere que secretaría académica localice manualmente las guías aprobadas de cada asignatura en el año en que el alumno la cursó. Con 16 programas, décadas de historial y cientos de alumnos, ese proceso no escala.
 
@@ -32,7 +32,7 @@ Es un servicio de valor añadido sobre el ecosistema existente, orientado a alum
 | Dimensión | Nivel | Justificación |
 |---|:-:|---|
 | Complejidad técnica | 🟡 Media | La generación del documento en sí reutiliza el render de CELDA (Jinja2/WeasyPrint). El reto técnico está en la firma digital y la verificación de autenticidad del documento generado. |
-| Complejidad de dominio | 🔴 Alta | No modela el censo de alumnos — el itinerario real se consulta a GUIAA por curso académico y asignatura — pero sí tiene que congelarlo: un documento certificado no puede sellarse contra una consulta viva, así que FEDATARIO persiste su propio snapshot del itinerario en el momento de la certificación, con firma digital y verificación de autenticidad. |
+| Complejidad de dominio | 🔴 Alta | No modela el censo de alumnos - el itinerario real se consulta a GUIAA por curso académico y asignatura - pero sí tiene que congelarlo: un documento certificado no puede sellarse contra una consulta viva, así que FEDATARIO persiste su propio snapshot del itinerario en el momento de la certificación, con firma digital y verificación de autenticidad. |
 | Dependencias | 🔴 Alta | Depende de CELDA para el historial de guías aprobadas. Depende de GUIAA para el itinerario real de cada alumno: la integración con el ERP académico de la universidad es la dependencia más incierta del roadmap. |
 | **Índice combinado** | 🔴 **Alta** | El proyecto con más trabajo de cero: introduce entidades nuevas, depende de integración externa y tiene requisitos de autenticidad documental que ningún otro satélite tiene. El modelo de negocio (servicio de pago) añade además requisitos de gestión que el ecosistema actual no tiene. |
 

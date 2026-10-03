@@ -49,3 +49,13 @@ Mapa de proyectos del ecosistema académico construido sobre [CELDA](https://git
 | [FEDATARIO](docs/FEDATARIO/README.md) | (nombre propio, sin expansión) | <sub>Generación del documento oficial personalizado por alumno con las guías docentes de su itinerario real. Dado que CELDA conserva las guías aprobadas año a año y GUIAA suministra el itinerario real de cada alumno (qué asignatura cursó en qué curso), puede compilar un libro certificado de su trayectoria académica. Servicio de pago.</sub> |
 | [SIGHOR](docs/SIGHOR/README.md) | Sistema de Gestión de Horarios | <sub>Gestor de horarios académicos: asignación de aulas, franjas y grupos para cada asignatura del programa. Fuente de datos para CARGA y punto de entrada para la planificación de ASISTE.</sub> |
 | [ACTIVITAT](docs/ACTIVITAT/README.md) | (nombre propio en valenciano, sin expansión) | <sub>Gestor de actividad docente del profesorado. A partir de los datos de impartición registrados en CELDA (quién impartió qué asignatura en qué curso), genera el informe anual de carga docente que cada profesor entrega a secretaría académica.</sub> |
+
+## Mapa
+
+<div align=center>
+
+|![](/images/modelosUML/mapaDependencias.svg)
+|-:
+[<sub>Código fuente</sub>](/modelosUML/mapaDependencias.puml)
+
+</div>

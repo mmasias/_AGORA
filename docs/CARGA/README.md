@@ -48,6 +48,6 @@ No toma decisiones: informa. La decisión de redistribuir evaluaciones es del di
 ### Cómo abordarlo
 
 1. Construir SIGHOR primero, o definir al menos su API de consulta de horarios.
-2. Definir con los directores de programa los umbrales que consideran razonables — sin esa conversación, el detector genera alertas que nadie atiende.
+2. Definir con los directores de programa los umbrales que consideran razonables - sin esa conversación, el detector genera alertas que nadie atiende.
 3. Construir CARGA como proceso de análisis bajo demanda en la primera versión: el director lo ejecuta cuando quiere, no en tiempo real.
 4. Evolucionar hacia detección automática y notificación proactiva en versiones posteriores, una vez validado que los umbrales son correctos.

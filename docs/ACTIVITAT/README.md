@@ -10,7 +10,7 @@ ACTIVITAT hace exactamente eso: genera el informe anual de carga docente de cada
 
 ## ¿Qué?
 
-Un gestor de actividad docente del profesorado. A partir de los datos de impartición registrados en CELDA — quién impartió qué asignatura en qué curso académico — genera el informe anual de carga docente que cada profesor entrega a secretaría académica y que la institución usa para los procesos de evaluación del profesorado.
+Un gestor de actividad docente del profesorado. A partir de los datos de impartición registrados en CELDA - quién impartió qué asignatura en qué curso académico - genera el informe anual de carga docente que cada profesor entrega a secretaría académica y que la institución usa para los procesos de evaluación del profesorado.
 
 ## ¿Para qué?
 
