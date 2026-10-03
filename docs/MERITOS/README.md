@@ -20,8 +20,8 @@ El profesor de CELDA y el de MERITOS son el mismo: mismo `email`, mismo identifi
 |---|---|
 | Profesor | Un único lugar donde mantener su trayectoria, sin rellenar el mismo dato en tres sistemas distintos |
 | Gabinete de calidad | Datos estructurados para memorias de titulación e informes de acreditación, sin perseguir a cada profesor por email |
-| PRISMA | Indicadores de actividad investigadora y docente del claustro, listos para agregar |
 | Dirección académica | Visión del claustro: quién está acreditado, quién tiene sexenios activos, qué perfil investigador tiene cada área |
+| PRISMA | Indicadores de actividad investigadora y docente del claustro, listos para agregar |
 
 ## ¿Cómo?
 
