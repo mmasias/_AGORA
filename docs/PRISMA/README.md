@@ -14,6 +14,21 @@ Un agregador de indicadores de calidad académica que lee datos de todo el ecosi
 
 Un prisma descompone la luz en sus componentes. PRISMA descompone los datos del ecosistema en indicadores visibles.
 
+La primera versión solo necesita CELDA (estado y plazos de las guías). El resto llega a medida que existen sus fuentes:
+
+| Indicador | Fuente | Nota |
+|---|---|---|
+| Estado y plazos de las guías, rechazos | CELDA | Primera versión |
+| Indicadores académicos (tasas de rendimiento, éxito, abandono, graduación) | ERP de la universidad | Los que exige ANECA; matrícula y notas |
+| Satisfacción docente | PULSO | Solo resultados agregados por encima del umbral de participación |
+| Asistencia y alumnos atendidos, también en tutorías | ASISTE | |
+| Cumplimiento: planificado frente a impartido | ASISTE | Calculado sobre los eventos asociados a la planificación; la tasa de asociación es en sí un indicador |
+| Carga docente, incluidas las horas de tutoría | ACTIVITAT | |
+| Equilibrio de carga evaluativa | CARGA | |
+| Perfil del claustro (acreditación, sexenios) | MERITOS | |
+
+PRISMA lee el resultado de CARGA y de ACTIVITAT, no lo recalcula: la regla (qué es sobrecarga, cómo se computa una hora docente) tiene un único dueño, y si PRISMA la repitiera habría dos definiciones que podrían divergir.
+
 ## ¿Para qué?
 
 | Audiencia | Qué obtiene |
