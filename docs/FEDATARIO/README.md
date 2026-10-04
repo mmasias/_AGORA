@@ -31,9 +31,9 @@ Es un servicio de valor añadido sobre el ecosistema existente, orientado a alum
 
 | Dimensión | Nivel | Justificación |
 |---|:-:|---|
-| Complejidad técnica | 🟡 Media | La generación del documento en sí reutiliza el render de CELDA (Jinja2/WeasyPrint). El reto técnico está en la firma digital y la verificación de autenticidad del documento generado. |
+| Complejidad técnica | 🟡 Media | El documento va personalizado para cada alumno, así que FEDATARIO tiene plantilla propia y la genera a partir de los datos de las guías que expone CELDA, no de su PDF; mantenerla al día con la de CELDA es coste propio. El reto técnico está en la firma digital y la verificación de autenticidad del documento generado. |
 | Complejidad de dominio | 🔴 Alta | No modela el censo de alumnos - el itinerario real se consulta al ERP de la universidad (GUIAA o AGORA) por curso académico y asignatura - pero sí tiene que congelarlo: un documento certificado no puede sellarse contra una consulta viva, así que FEDATARIO persiste su propio snapshot del itinerario en el momento de la certificación, con firma digital y verificación de autenticidad. |
-| Dependencias | 🔴 Alta | Depende de CELDA para el historial de guías aprobadas. Depende del ERP de la universidad (GUIAA o AGORA) para el itinerario real de cada alumno: un contrato de integración con un sistema que el proyecto no controla, la dependencia más incierta del roadmap. |
+| Dependencias | 🔴 Alta | Depende de CELDA para el historial de guías aprobadas. Depende del ERP de la universidad para el itinerario real y la identidad de cada alumno: un sistema que el proyecto no controla, aunque la integración es una sola, contra la interfaz común de COLMENA. |
 | **Índice combinado** | 🔴 **Alta** | El proyecto con más trabajo de cero: introduce entidades nuevas, depende de integración externa y tiene requisitos de autenticidad documental que ningún otro satélite tiene. El modelo de negocio (servicio de pago) añade además requisitos de gestión que el ecosistema actual no tiene. |
 
 </div>
@@ -49,5 +49,5 @@ Es un servicio de valor añadido sobre el ecosistema existente, orientado a alum
 
 1. Resolver primero el contrato con el ERP de la universidad (consulta del itinerario) y el formato del snapshot certificado, en colaboración con secretaría académica. Sin eso, no hay proyecto.
 2. Definir el mecanismo de autenticidad documental con el área jurídica de la institución antes de construir nada.
-3. Construir el generador de documentos reutilizando el render de CELDA como primera prueba de concepto, con itinerarios introducidos manualmente.
+3. Construir el generador de documentos, con plantilla propia sobre los datos de las guías de CELDA, como primera prueba de concepto con itinerarios introducidos manualmente.
 4. Integrar con el ERP de la universidad como segunda fase, una vez validado el documento generado con secretaría académica.
