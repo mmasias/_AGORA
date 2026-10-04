@@ -14,7 +14,7 @@ MERITOS corrige el desvío: extrae ese módulo de CELDA a un repositorio propio,
 
 Un repositorio personal por profesor donde cada uno vuelca y mantiene su trayectoria académica e investigadora. No nace de cero: nace de la extracción del módulo de perfil que hoy vive dentro de CELDA, del que conserva el modelo de datos ya validado con el gabinete de calidad. Tampoco termina en la extracción: lo amplía con publicaciones y cargos. No es un CV libre - es un formulario estructurado que facilita la extracción de datos para procesos institucionales.
 
-El profesor de CELDA y el de MERITOS son el mismo: mismo `email`, misma persona. Un profesor es profesor con independencia de las asignaturas que imparta, así que ninguna de las dos aplicaciones necesita a la otra para saber quién es: cada una autentica por su cuenta, con su propio OAuth contra `email`.
+MERITOS no gestiona al profesor: gestiona los datos que el profesor aporta. La identidad del profesor la gestiona la universidad, fuera de todos los servicios del mapa; CELDA solo asocia su `email` con sus roles. El profesor de CELDA y el de MERITOS son el mismo: mismo `email`, misma persona. Un profesor es profesor con independencia de las asignaturas que imparta, así que ninguna de las dos aplicaciones necesita a la otra para saber quién es: cada una autentica por su cuenta, con su propio OAuth contra `email`.
 
 ## ¿Para qué?
 
@@ -44,6 +44,7 @@ El profesor de CELDA y el de MERITOS son el mismo: mismo `email`, misma persona.
 ### Decisiones de diseño a tomar antes de construir
 
 - **¿Corte único o doble escritura temporal?** Migrar en un solo despliegue concentra el riesgo pero cierra la puerta de golpe; mantener doble escritura durante un curso de transición es más seguro pero conserva el módulo vivo en los dos sitios a la vez.
+- **¿Qué pasa con la condición de paso de CELDA? (decidido)** Hoy CELDA no deja acceder a las guías mientras el perfil del curso activo no esté validado. Esa condición sale con el módulo: tras la extracción, comprobar el perfil validado deja de ser responsabilidad de CELDA, y CELDA no consulta a MERITOS para ello.
 - **¿Conserva CELDA lectura de algo del perfil tras la extracción?** Hoy lo consumen MiPerfil y la vista de profesores; el PDF de la guía no lo toca (renderiza los nombres del profesorado de la propia guía). El único candidato a contrato de lectura es la breve descripción del profesor (biografía) — y en ese caso es CELDA quien consulta a MERITOS, no al revés. Si no hace falta, desacoplamiento total.
 - **¿Dónde vive la historización por curso?** El contrato `(Profesor, CursoAcademico)` se lleva tal cual: el curso académico es convención institucional compartida por todas las aplicaciones, no una consulta a CELDA. Queda por fijar cómo se alinea el corte de curso entre aplicaciones sin que ninguna mande sobre las demás.
 - **¿Cómo se modelan las publicaciones?** Campos estructurados (DOI, revista, año, índice de impacto) permiten cruzar con bases externas (ORCID, Scopus) e importar desde ahí; texto libre es más fácil de rellenar. Primera extensión natural una vez extraído el perfil.
@@ -52,6 +53,6 @@ El profesor de CELDA y el de MERITOS son el mismo: mismo `email`, misma persona.
 
 1. Inventariar el módulo en CELDA (tabla, formulario, validación) y cerrar el inventario de consumidores: qué queda en CELDA leyendo el perfil y bajo qué contrato.
 2. Construir MERITOS con el modelo de perfil actual tal cual - ya está validado con el gabinete de calidad - y la identidad resuelta.
-3. Ejecutar la extracción como un solo movimiento: migración del histórico con su estado de validación intacto y retirada del módulo en CELDA en el mismo despliegue.
+3. Ejecutar la extracción como un solo movimiento: migración del histórico con su estado de validación intacto y retirada del módulo en CELDA en el mismo despliegue, incluida la condición de paso del perfil validado.
 4. Extender con publicaciones y cargos una vez el perfil extraído esté estable; ORCID como primera integración.
 5. Exponer vía API los datos que PRISMA necesita agregar.
