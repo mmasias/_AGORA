@@ -18,7 +18,7 @@ Un gestor de actividad docente del profesorado. A partir de los datos de imparti
 |---|---|
 | Profesor | El informe anual de carga docente generado automáticamente, sin trabajo manual |
 | Secretaría académica | Informes normalizados de toda la plantilla, comparables entre sí y verificables contra el catálogo |
-| Dirección académica | Visión de la distribución de carga docente por departamento o área, para decisiones de contratación y asignación |
+| Director de programa | Carga docente de su programa (el departamento se deduce del programa en que se imparte cada asignatura), para decisiones de contratación y asignación |
 | MERITOS | Datos de actividad docente para complementar el perfil del profesor |
 | PRISMA | Indicadores de carga docente por programa y por área para dashboards institucionales |
 
@@ -41,7 +41,7 @@ Un gestor de actividad docente del profesorado. A partir de los datos de imparti
 
 - **¿Cuál es el formato exacto del informe?** Cada institución tiene su propio formato para el informe de carga docente. La primera tarea es conseguir una plantilla real y validar que los datos de CELDA son suficientes para rellenarla.
 - **¿Cómo se modela la impartición compartida?** Una asignatura con dos profesores: ¿se divide la carga por horas reales de cada uno, o se asigna completa a ambos? La respuesta depende de la normativa institucional.
-- **¿Se incluye actividad de tutorías y seminarios?** Si ASISTE existe, ACTIVITAT puede incluir también la actividad de tutorías registrada ahí. Sin ASISTE, solo cuenta lo que está en las guías de CELDA.
+- **¿Planificada o real? (decidido)** CELDA da la carga planificada; ASISTE, cuando exista, la real: sesiones impartidas de verdad (con sustituciones) y horas de tutoría, un dato que hoy no se mide. Sin ASISTE, solo cuenta lo planificado en CELDA.
 - **¿El informe lo genera el profesor, secretaría o es automático?** Un informe que se genera automáticamente al cerrar el curso académico y se envía al profesor para que lo revise y firme es el flujo más eficiente, pero requiere validar el dato de impartición antes de enviar.
 
 ### Cómo abordarlo
@@ -49,4 +49,4 @@ Un gestor de actividad docente del profesorado. A partir de los datos de imparti
 1. Obtener el formato real del informe de carga docente de secretaría académica y verificar que los datos de CELDA son suficientes para generarlo.
 2. Construir el generador como consulta + exportación PDF/Excel sobre los datos existentes en CELDA. Sin modelo de datos nuevo.
 3. Validar el informe generado con dos o tres profesores reales antes de distribuirlo a toda la plantilla.
-4. Integrar con ASISTE para incluir actividad de tutorías en una segunda fase, si ASISTE existe.
+4. Integrar con ASISTE en una segunda fase para incluir la carga real: sesiones impartidas y tutorías.

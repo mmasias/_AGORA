@@ -1,0 +1,37 @@
+@startmindmap ecosistemaCeldaMindmap
+
+<style>
+mindmapDiagram {
+  node {
+    BackgroundColor #FFFFFF
+    LineColor #424242
+    FontSize 13
+  }
+  rootNode {
+    FontSize 16
+    FontStyle bold
+  }
+  arrow {
+    LineColor #757575
+  }
+}
+</style>
+
+* CELDA\n<size:11>Guías docentes</size>
+** Profesorado
+*** <b>MERITOS</b>\n<size:11>Expediente del profesor</size>
+*** <b>ACTIVITAT</b>\n<size:11>Actividad docente</size>
+** Alumnado y público
+*** <b>VITRINA</b>\n<size:11>Guías públicas</size>
+*** <b>ASISTE</b>\n<size:11>Asistencia</size>
+*** <b>FEDATARIO</b>\n<size:11>Certificación de guías</size>
+-- Calidad
+--- <b>PRISMA</b>\n<size:11>Indicadores de calidad</size>
+--- <b>PULSO</b>\n<size:11>Encuestas docentes</size>
+-- Organización docente
+--- <b>SIGHOR</b>\n<size:11>Horarios</size>
+--- <b>CARGA</b>\n<size:11>Carga de evaluación</size>
+-- Bibliografía
+--- <b>CITA</b>\n<size:11>Catálogo de bibliografía</size>
+
+@endmindmap
