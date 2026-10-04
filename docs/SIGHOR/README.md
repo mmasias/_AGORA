@@ -4,7 +4,7 @@
 
 La planificación docente de CELDA sabe qué se enseña y cuándo, pero no sabe en qué aula ni a qué hora. Los horarios académicos - qué grupo tiene qué asignatura, en qué franja y en qué espacio - viven en sistemas propietarios, hojas de cálculo o en el LMS, desconectados del resto del ecosistema.
 
-Esa desconexión tiene consecuencias concretas: CARGA no puede detectar solapamientos de evaluación sin saber cuándo son realmente los exámenes, ASISTE no puede vincular un registro de presencia a un aula sin saber qué grupo estaba ahí, y ningún alumno tiene una fuente única y fiable para consultar su horario.
+Esa desconexión tiene consecuencias concretas: ningún alumno tiene una fuente única y fiable para consultar su horario.
 
 SIGHOR es esa fuente: el gestor de horarios académicos del ecosistema.
 
@@ -16,8 +16,6 @@ Un sistema de gestión de horarios que asigna aulas, franjas horarias y grupos a
 
 Es el **dueño de los grupos**: los infiere por afinidad de asignatura (asignaturas de distintos programas que comparten la misma asignatura del catálogo pueden impartirse como un único grupo) y permite ajustarlos cuando la inferencia no es adecuada. CELDA no modela grupos: su planificación por sesiones es la misma para todos los grupos de una asignatura.
 
-Es la fuente de datos de referencia para CARGA (sesiones por semana de cada asignatura) y ASISTE (grupos sobre los que registra la asistencia, con su aula y franja).
-
 ## ¿Para qué?
 
 | Audiencia | Qué obtiene |
@@ -25,8 +23,6 @@ Es la fuente de datos de referencia para CARGA (sesiones por semana de cada asig
 | Ordenación académica | Herramienta de asignación de espacios y franjas que detecta conflictos antes de publicar el horario |
 | Alumno | Fuente única y fiable para consultar su horario, integrada con el ecosistema académico |
 | Profesor | Visibilidad de su carga horaria semanal, integrada con su planificación docente en CELDA |
-| CARGA | Sesiones por semana de cada asignatura, para inferir la semana de cada evaluación |
-| ASISTE | Los grupos sobre los que registra la asistencia, con su aula y franja |
 
 ## ¿Cómo?
 
@@ -38,7 +34,7 @@ Es la fuente de datos de referencia para CARGA (sesiones por semana de cada asig
 |---|:-:|---|
 | Complejidad técnica | 🔴 Alta | La asignación óptima de aulas y franjas es un problema de satisfacción de restricciones (CSP): capacidad de aula, disponibilidad del profesor, franjas no solapadas para el mismo grupo, preferencias de horario. Resolverlo bien requiere un motor de restricciones o una heurística cuidadosamente diseñada. |
 | Complejidad de dominio | 🔴 Alta | Los horarios académicos tienen un volumen de restricciones institucionales elevado: franjas reservadas, aulas con equipamiento especial, grupos partidos, docencia compartida entre dos profesores. Modelar todas las restricciones sin que el sistema sea imposible de usar es el reto de diseño central. |
-| Dependencias | 🟡 Media | Depende de CELDA para el catálogo de asignaturas; los grupos los crea el propio SIGHOR. Es relativamente independiente del resto de satélites, aunque CARGA y ASISTE dependen de él. |
+| Dependencias | 🟡 Media | Depende de CELDA (catálogo de asignaturas, profesorado, horas presenciales) y del ERP de la universidad (número de matriculados, para dimensionar aulas); los grupos los crea el propio SIGHOR. |
 | **Índice combinado** | 🔴 **Alta** | El proyecto técnicamente más complejo del roadmap. La resolución de restricciones de horarios es un problema clásico de IA/optimización que no se resuelve bien con un CRUD convencional. |
 
 </div>
@@ -55,6 +51,6 @@ Es la fuente de datos de referencia para CARGA (sesiones por semana de cada asig
 1. Empezar por el importador: si los horarios existen en algún formato (Excel, CSV, PDF), importarlos y visualizarlos es la primera versión útil y la que genera adopción.
 2. Construir el detector de conflictos antes que el asignador automático: detectar solapamientos es más simple y más inmediatamente valioso.
 3. El asignador automático como tercera fase, solo si las fases anteriores demuestran que hay demanda real para ello.
-4. Exponer la API de horarios que necesitan CARGA y ASISTE desde la primera versión, aunque los datos sean importados y no generados por el sistema.
+4. Exponer la API de horarios desde la primera versión, aunque los datos sean importados y no generados por el sistema.
 
 Por su complejidad, es previsiblemente de los últimos proyectos del roadmap, si no el último.
