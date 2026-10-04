@@ -1,86 +1,117 @@
 @startuml
 
+hide stereotype
+left to right direction
+
 skinparam component {
+  BorderColor<<existente>> #00695C
   BorderColor<<construido>> #2E7D32
-  BorderColor<<fase2>> #F9A825
-  BorderColor<<fase3>> #D84315
+  BorderColor<<fase2_baja>> #F9A825
+  BorderColor<<fase2_media>> #F9A825
+  BorderColor<<fase2_alta>> #F57F17
+  BorderColor<<fase3_baja>> #D84315
+  BorderColor<<fase3_media>> #D84315
+  BorderColor<<fase3_alta>> #BF360C
   BorderColor<<externo>> #757575
+  BackgroundColor<<existente>> #B2DFDB
   BackgroundColor<<construido>> #C8E6C9
-  BackgroundColor<<fase2>> #FFF9C4
-  BackgroundColor<<fase3>> #FFCCBC
+  BackgroundColor<<fase2_baja>> #FFF9C4
+  BackgroundColor<<fase2_media>> #FFEE58
+  BackgroundColor<<fase2_alta>> #FBC02D
+  BackgroundColor<<fase3_baja>> #FFCCBC
+  BackgroundColor<<fase3_media>> #FF8A65
+  BackgroundColor<<fase3_alta>> #E64A19
   BackgroundColor<<externo>> #E0E0E0
 }
 
-' === Fuentes ===
+package UNIVERSO_CONOCIDO {
 
-component "CELDA" <<construido>> as CELDA
-component "ERP de la universidad\nGUIAA / AGORA" <<externo>> as ERP
+  ' === Sistemas ya construidos de la organizacion (se consumen, no se construyen aqui) ===
 
-component "ORCID" <<externo>> as ORCID
-component "CrossRef" <<externo>> as CROSSREF
+  component "SISTEMAS\n\n<b>ERP</b>s: SG / GUIAA / AGORA\n\n<b>LMS</b>: PANAL & CAMPUS" <<existente>> as ERP
 
-' === Satelites Fase II ===
+  ' === Lo que se construye aqui ===
 
-component "MERITOS" <<fase2>> as MERITOS
-component "PULSO" <<fase2>> as PULSO
-component "VITRINA" <<fase2>> as VITRINA
-component "CITA" <<fase2>> as CITA
-component "CARGA" <<fase2>> as CARGA
-component "PRISMA" <<fase2>> as PRISMA
+  package ECOSISTEMA_CELDA {
 
-' === Satelites Fase III ===
+    component "CELDA" <<construido>> as CELDA
 
-component "SIGHOR" <<fase3>> as SIGHOR
-component "ASISTE" <<fase3>> as ASISTE
-component "FEDATARIO" <<fase3>> as FEDATARIO
-component "ACTIVITAT" <<fase3>> as ACTIVITAT
+    ' === Satelites Fase II ===
+
+    component "MERITOS" <<fase2_media>> as MERITOS
+    component "PULSO" <<fase2_media>> as PULSO
+    component "VITRINA" <<fase2_baja>> as VITRINA
+    component "CITA" <<fase2_baja>> as CITA
+    component "CARGA" <<fase2_media>> as CARGA
+    component "PRISMA" <<fase2_alta>> as PRISMA
+
+    ' === Satelites Fase III ===
+
+    component "SIGHOR" <<fase3_alta>> as SIGHOR
+    component "ASISTE" <<fase3_media>> as ASISTE
+    component "FEDATARIO" <<fase3_alta>> as FEDATARIO
+    component "ACTIVITAT" <<fase3_baja>> as ACTIVITAT
+
+  }
+
+}
+
+package EXTRAVERSO {
+  component "ORCID" <<externo>> as ORCID
+  component "CrossRef" <<externo>> as CROSSREF
+
+}
+
 
 ' === Consumos sobre CELDA ===
 
-PULSO -up-> CELDA : <sub>catalogo</sub>
-VITRINA -up-> CELDA : <sub>guias aprobadas</sub>
-CARGA -up-> CELDA : <sub>sesiones de evaluacion</sub>
-ASISTE -up-> CELDA : <sub>sesiones y catalogo</sub>
-SIGHOR -up-> CELDA : <sub>catalogo</sub>
-ACTIVITAT -up-> CELDA : <sub>imparticiones</sub>
-FEDATARIO -up-> CELDA : <sub>guias aprobadas por curso</sub>
-PRISMA -up-> CELDA : <sub>estado de las guias</sub>
+PULSO -up-> CELDA
+VITRINA -up-> CELDA
+CARGA -up-> CELDA
+SIGHOR -up-> CELDA
+ACTIVITAT -up-> CELDA
+FEDATARIO -up-> CELDA
+PRISMA -up-> CELDA
 
 ' === CELDA sobre satelites ===
 
-CELDA -down-> CITA : <sub>buscar / dar de alta referencias</sub>\n<sub>(CELDA copia la referencia)</sub>
+CELDA .down.> CITA
 
 ' === Satelite a satelite ===
 
-CARGA -up-> SIGHOR : <sub>sesiones por semana</sub>
-ASISTE -up-> SIGHOR : <sub>grupos, aula y franja</sub>
-PRISMA -up-> MERITOS
-PRISMA -up-> PULSO
-PRISMA -up-> ASISTE
-PRISMA -up-> CARGA
-PRISMA -up-> ACTIVITAT
+PRISMA .up.> MERITOS
+PRISMA .up.> PULSO
+PRISMA .up.> ASISTE
+PRISMA .up.> CARGA
+PRISMA .up.> ACTIVITAT
 
 ' === Consumos sobre el ERP de la universidad ===
 
-FEDATARIO -up-> ERP : <sub>itinerario del alumno</sub>
-
-ERP -d[hidden]- CELDA
+FEDATARIO -up-> ERP
+SIGHOR -up-> ERP
 
 ' === Extensiones previstas ===
 
-PULSO .up.> ERP : <sub>censo de alumnos (v2)</sub>
-ACTIVITAT .up.> ASISTE : <sub>tutorias (fase 2)</sub>
-MERITOS .up.> ORCID : <sub>importar publicaciones</sub>
-CITA .up.> CROSSREF : <sub>alta de referencias por DOI</sub>
-CELDA ..> MERITOS : <sub>breve descripcion del profesor (por decidir)</sub>
+ASISTE .up.> CELDA
+CELDA .up.> ERP
+PULSO .up.> ERP
+PRISMA .up.> ERP
+ACTIVITAT .up.> ASISTE
+MERITOS ...down.> ORCID
+CITA ..down.> CROSSREF
+CELDA ..> MERITOS
 
-legend left
-  | Color | Estado |
-  |<#C8E6C9>| construido |
-  |<#FFF9C4>| Fase II |
-  |<#FFCCBC>| Fase III |
-  |<#E0E0E0>| sistema externo |
-  Linea continua: dependencia desde la v1
-  Linea discontinua: extension prevista
+legend right
+| Color | Estado |
+|<#B2DFDB>| Existente |
+|<#C8E6C9>| Construido |
+|<#FFEE58>| Fase II |
+|<#FF8A65>| Fase III |
+|<#E0E0E0>| Sistema de terceros |
+Tono: mas claro = mas sencillo, mas intenso = mas complejo
+UNIVERSO_CONOCIDO: nosotros
+EXTRAVERSO: terceros
+<i>Linea continua: dependencia desde la v1</i>
+<i>Linea discontinua: dependencia opcional, prevista o pendiente de decidir</i>
 end legend
 @enduml
