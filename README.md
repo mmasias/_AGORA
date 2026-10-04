@@ -60,6 +60,14 @@ Cada dato compartido tiene un único dueño, que lo crea y lo modifica; el resto
 
 ### Detalle de proyectos
 
+<div align=center>
+
+|![](/images/modelosUML/ecosistemaCelda.svg)
+|-:
+[Ver más...](docs/MAPA.md)
+
+</div>
+
 | Proyecto | Expansión | Descripción |
 |---|---|---|
 | [**CELDA**](https://github.com/mmasias/pyCelda) | Catálogo Electrónico Ligero de Documentación Académica | <sub>Gestión del ciclo de vida completo de las guías docentes universitarias: redacción, revisión y aprobación con flujo de estados controlado, planificación por sesiones, ponderaciones de evaluación y bibliografía sobre un catálogo institucional validado contra memorias ANECA.</sub> |
@@ -70,16 +78,6 @@ Cada dato compartido tiene un único dueño, que lo crea y lo modifica; el resto
 | [CITA](docs/CITA/README.md) | Catálogo e Indexador de Textos Académicos | <sub>Catálogo institucional de referencias bibliográficas correctamente especificadas. CELDA se apoya en él para encontrar o construir una referencia y la copia en la guía; las referencias nuevas quedan almacenadas para su reutilización por CELDA o cualquier otro consumidor.</sub> |
 | [CARGA](docs/CARGA/README.md) | Control y Análisis del Reparto y Gestión de Actividades | <sub>Detector de sobrecarga de evaluación a partir de la planificación docente real de CELDA. Infiere en qué semana cae cada sesión de evaluación (tipo y orden de la sesión y sesiones por semana según su planificación, inicio común de todas las asignaturas) para identificar acumulación de evaluaciones en una misma semana.</sub> |
 | [ASISTE](docs/ASISTE/README.md) | Aplicación de Seguimiento e Informe Sobre la Trazabilidad de Eventos | <sub>Fedatario de asistencia a eventos académicos: clases, tutorías, seminarios. Registra quién asistió a cada evento, asociado opcionalmente a una sesión de la planificación de CELDA, y responde a quien pregunte (¿ha asistido el alumno X a todas las sesiones de la asignatura Y?), sin aplicar reglas académicas ni validar matrícula. Parte del esbozo existente en pySesion.</sub> |
-| [FEDATARIO](docs/FEDATARIO/README.md) | (nombre propio, sin expansión) | <sub>Generación del documento oficial personalizado por alumno con las guías docentes de su itinerario real. Dado que CELDA conserva las guías aprobadas año a año y el ERP de la universidad suministra el itinerario real de cada alumno (qué asignatura cursó en qué curso), puede compilar un libro certificado de su trayectoria académica. Servicio de pago.</sub> |
+| [FEDATARIO](docs/FEDATARIO/README.md) |  | <sub>Generación del documento oficial personalizado por alumno con las guías docentes de su itinerario real. Dado que CELDA conserva las guías aprobadas año a año y el ERP de la universidad suministra el itinerario real de cada alumno (qué asignatura cursó en qué curso), puede compilar un libro certificado de su trayectoria académica. Servicio de pago.</sub> |
 | [SIGHOR](docs/SIGHOR/README.md) | Sistema de Gestión de Horarios | <sub>Gestor de horarios académicos, reingeniería de SigHor (1998): asignación de aulas, franjas y grupos para cada asignatura del programa. Dueño de los grupos.</sub> |
-| [ACTIVITAT](docs/ACTIVITAT/README.md) | (nombre propio en valenciano, sin expansión) | <sub>Gestor de actividad docente del profesorado. A partir de los datos de impartición registrados en CELDA (quién impartió qué asignatura en qué curso), genera el informe anual de carga docente que cada profesor entrega a secretaría académica.</sub> |
-
-## Mapa
-
-<div align=center>
-
-|![](/images/modelosUML/mapaDependencias.svg)
-|-:
-[<sub>Código fuente</sub>](/modelosUML/mapaDependencias.puml)
-
-</div>
+| [ACTIVITAT](docs/ACTIVITAT/README.md) |  | <sub>Gestor de actividad docente del profesorado. A partir de los datos de impartición registrados en CELDA (quién impartió qué asignatura en qué curso), genera el informe anual de carga docente que cada profesor entrega a secretaría académica.</sub> |
