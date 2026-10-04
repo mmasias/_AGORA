@@ -1,0 +1,50 @@
+@startuml ecosistemaCelda
+
+hide stereotype
+left to right direction
+
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #424242
+  FontSize 13
+}
+
+component "<b>CELDA</b>\n<size:11>Guías docentes</size>" as CELDA
+
+package "Profesorado" {
+  component "<b>MERITOS</b>\n<size:11>Expediente del profesor</size>" as MERITOS
+  component "<b>ACTIVITAT</b>\n<size:11>Actividad docente</size>" as ACTIVITAT
+}
+
+package "Alumnado y público" {
+  component "<b>VITRINA</b>\n<size:11>Guías públicas</size>" as VITRINA
+  component "<b>ASISTE</b>\n<size:11>Asistencia</size>" as ASISTE
+  component "<b>FEDATARIO</b>\n<size:11>Certificación de guías</size>" as FEDATARIO
+}
+
+package "Calidad" {
+  component "<b>PRISMA</b>\n<size:11>Indicadores de calidad</size>" as PRISMA
+  component "<b>PULSO</b>\n<size:11>Encuestas docentes</size>" as PULSO
+}
+
+package "Organización docente" {
+  component "<b>SIGHOR</b>\n<size:11>Horarios</size>" as SIGHOR
+  component "<b>CARGA</b>\n<size:11>Carga de evaluación</size>" as CARGA
+}
+
+package "Bibliografía" {
+  component "<b>CITA</b>\n<size:11>Catálogo de bibliografía</size>" as CITA
+}
+
+CELDA -- MERITOS
+CELDA -- ACTIVITAT
+CELDA -- VITRINA
+CELDA -- ASISTE
+CELDA -- FEDATARIO
+PRISMA -- CELDA
+PULSO -- CELDA
+SIGHOR -- CELDA
+CARGA -- CELDA
+CITA -- CELDA
+
+@enduml
