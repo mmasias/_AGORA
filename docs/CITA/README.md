@@ -41,7 +41,7 @@ CITA no reescribe guías: la guía conserva su copia. Corregir una referencia en
 
 - **¿Cuál es el criterio de deduplicación al dar de alta?** Mismo DOI (artículos), mismo ISBN (libros), o... ¿qué criterio para los demás casos? Determina cuándo CITA ofrece una referencia existente en vez de crear una nueva.
 - **¿Se siembra el catálogo con las referencias ya guardadas en CELDA?** Hacerlo da un catálogo útil desde el primer día pero exige reconciliar casos ambiguos; empezar vacío es más limpio y el catálogo crece con el uso.
-- **¿Se integra con bases externas?** Un DOI resuelve automáticamente los metadatos de un artículo. Integrar con CrossRef o similar elimina el trabajo manual de alta.
+- **¿Se integra con bases externas?** Un DOI resuelve automáticamente los metadatos de un artículo. Integrar con CrossRef o similar elimina el trabajo manual de alta. CrossRef cubre lo que tiene DOI (sobre todo artículos y capítulos); los libros, mayoritarios en la bibliografía docente, se identifican por ISBN y necesitarían otro servicio (por ejemplo, Open Library).
 - **¿Qué se copia en la guía?** La cita formateada, los campos estructurados, o ambos más el identificador de origen en CITA (útil para estadísticas de uso sin crear dependencia de renderizado).
 
 ### Cómo abordarlo
