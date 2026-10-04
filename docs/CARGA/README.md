@@ -4,13 +4,15 @@
 
 Un alumno que cursa cinco asignaturas en el mismo semestre puede encontrarse con tres entregas y un examen parcial en la misma semana, sin que ningún profesor ni ningún director de programa lo haya detectado. Cada guía docente planifica sus sesiones de forma independiente, sin visión del conjunto.
 
-CELDA tiene la planificación de sesiones de cada asignatura. SIGHOR tiene los horarios reales de cada grupo. Cruzar esos dos datos permite detectar, antes de que el curso empiece, las ventanas críticas donde se acumula carga de evaluación.
+CELDA tiene la planificación de sesiones de cada asignatura, con las sesiones de evaluación marcadas por su tipo y en su orden. SIGHOR sabe cuántas sesiones por semana tiene cada asignatura. Y, por norma de la universidad, todas las asignaturas empiezan la misma semana. Con esas tres piezas se puede inferir, antes de que el curso empiece, en qué semana cae cada evaluación y detectar las semanas donde se acumula carga.
 
 CARGA convierte esa detección en un proceso automático y sistemático.
 
 ## ¿Qué?
 
-Un detector de sobrecarga de evaluación a partir de la planificación docente real. Cruza las sesiones de tipo evaluación planificadas en las guías de CELDA con los horarios de SIGHOR para identificar semanas o periodos donde la carga de evaluación supera umbrales razonables para el alumno.
+Un detector de sobrecarga de evaluación a partir de la planificación docente real. Para cada asignatura de un programa y semestre, toma de CELDA las sesiones de evaluación (tipo `EVALUACION_CONTINUA` o `EVALUACION_PARCIAL`) y su número de orden, y de SIGHOR las sesiones por semana; con la semana de inicio común calcula la semana de cada evaluación e identifica las semanas donde la carga supera umbrales razonables para el alumno.
+
+El cruce es indirecto -- tipo y orden de sesión, sesiones por semana, inicio común --, no una lectura de fechas: CELDA no guarda fechas de sesión y SIGHOR aporta la planificación semanal de impartición, no fechas de examen. El cruce se hace por asignatura del programa, no por grupo: la planificación por sesiones es la misma para todos los grupos de una asignatura.
 
 No toma decisiones: informa. La decisión de redistribuir evaluaciones es del director de programa.
 
@@ -31,23 +33,23 @@ No toma decisiones: informa. La decisión de redistribuir evaluaciones es del di
 
 | Dimensión | Nivel | Justificación |
 |---|:-:|---|
-| Complejidad técnica | 🟡 Media | El cruce de datos entre dos fuentes (CELDA y SIGHOR) con granularidades distintas (sesiones de guía vs. franjas horarias de grupos) requiere una capa de normalización temporal no trivial. |
+| Complejidad técnica | 🟡 Media | El cálculo en sí es sencillo (semana = inicio común + posición de la sesión según las sesiones por semana), pero depende de que los tres datos sean coherentes: una planificación con sesiones de más o de menos desplaza todas las evaluaciones posteriores. |
 | Complejidad de dominio | 🟡 Media | Definir qué es "sobrecarga" es una decisión institucional: ¿cuántas evaluaciones en una semana son demasiadas? ¿Se cuenta por alumno individual o por grupo? ¿Se ponderan por peso en la nota? Los umbrales son configurables pero alguien tiene que definirlos. |
-| Dependencias | 🔴 Alta | Depende de CELDA (planificación de sesiones) y de SIGHOR (horarios). Si SIGHOR no existe, CARGA solo puede analizar la planificación temporal sin anclarla a fechas reales del calendario. Es el proyecto con dependencia más directa de otro satélite no construido. |
+| Dependencias | 🔴 Alta | Depende de CELDA (sesiones de evaluación y su orden), de SIGHOR (sesiones por semana) y del calendario lectivo de CELDA (semana de inicio de cada semestre, hoy no modelada). Sin SIGHOR, el número de sesiones por semana habría que tomarlo de otra fuente o suponerlo. |
 | **Índice combinado** | 🔴 **Alta** | No por complejidad intrínseca sino por dependencias: CARGA sin SIGHOR es solo la mitad del análisis. La secuencia natural es SIGHOR primero, CARGA después. |
 
 </div>
 
 ### Decisiones de diseño a tomar antes de construir
 
-- **¿Qué unidad de tiempo es la ventana de análisis?** Semana natural, semana lectiva, o periodo configurable. La elección cambia la sensibilidad del detector.
-- **¿Se cruza por grupo o por alumno?** Un alumno en un grupo de mañana y otro en uno de tarde pueden tener cargas distintas aunque cursen la misma asignatura.
+- **Unidad de análisis (decidido): la semana**, con todas las asignaturas empezando la misma semana por norma de la universidad, y el cruce por asignatura del programa, no por grupo.
+- **¿De dónde sale la semana de inicio de cada semestre?** El calendario lectivo es de CELDA, pero hoy solo tiene inicio, fin y semestre activo del curso.
 - **¿Se pesan las evaluaciones por ponderación en la nota?** Un examen del 50% no es lo mismo que una entrega del 5%, aunque ambos sean "evaluaciones" en el calendario.
 - **¿Es CARGA un proceso bajo demanda o un proceso automático?** Ejecutarlo cada vez que un profesor guarda su planificación o ejecutarlo periódicamente (cada noche, por ejemplo) son dos arquitecturas distintas con implicaciones muy diferentes en carga de sistema.
 
 ### Cómo abordarlo
 
-1. Construir SIGHOR primero, o definir al menos su API de consulta de horarios.
+1. Asegurar los tres datos de entrada: sesiones de evaluación en CELDA (ya existen), sesiones por semana (SIGHOR, o una fuente provisional si SIGHOR aún no existe) y semana de inicio del semestre en el calendario de CELDA.
 2. Definir con los directores de programa los umbrales que consideran razonables - sin esa conversación, el detector genera alertas que nadie atiende.
 3. Construir CARGA como proceso de análisis bajo demanda en la primera versión: el director lo ejecuta cuando quiere, no en tiempo real.
 4. Evolucionar hacia detección automática y notificación proactiva en versiones posteriores, una vez validado que los umbrales son correctos.
