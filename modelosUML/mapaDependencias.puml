@@ -64,6 +64,8 @@ PRISMA -up-> ACTIVITAT
 
 FEDATARIO -up-> ERP : <sub>itinerario del alumno</sub>
 
+ERP -d[hidden]- CELDA
+
 ' === Extensiones previstas ===
 
 PULSO .up.> ERP : <sub>censo de alumnos (v2)</sub>
