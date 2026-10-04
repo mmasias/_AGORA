@@ -1,8 +1,6 @@
-# _ECOSISTEMA_CELDA
+# Ecosistema CELDA
 
-Pensando el futuro.
-
-Mapa de proyectos del ecosistema académico construido sobre [CELDA](https://github.com/mmasias/pyCelda).
+Mapa de proyectos del ecosistema construido sobre [CELDA](https://github.com/mmasias/pyCelda).
 
 ## Ecosistema
 
