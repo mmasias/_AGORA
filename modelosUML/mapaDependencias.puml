@@ -2,12 +2,10 @@
 
 skinparam component {
   BorderColor<<construido>> #2E7D32
-  BorderColor<<infra>> #1565C0
   BorderColor<<fase2>> #F9A825
   BorderColor<<fase3>> #D84315
   BorderColor<<externo>> #757575
   BackgroundColor<<construido>> #C8E6C9
-  BackgroundColor<<infra>> #BBDEFB
   BackgroundColor<<fase2>> #FFF9C4
   BackgroundColor<<fase3>> #FFCCBC
   BackgroundColor<<externo>> #E0E0E0
@@ -16,7 +14,7 @@ skinparam component {
 ' === Fuentes ===
 
 component "CELDA" <<construido>> as CELDA
-component "GUIAA\nERP academico" <<infra>> as GUIAA
+component "ERP de la universidad\nGUIAA / AGORA" <<externo>> as ERP
 
 component "ORCID" <<externo>> as ORCID
 component "CrossRef" <<externo>> as CROSSREF
@@ -41,32 +39,34 @@ component "ACTIVITAT" <<fase3>> as ACTIVITAT
 
 PULSO -up-> CELDA : <sub>catalogo</sub>
 VITRINA -up-> CELDA : <sub>guias aprobadas</sub>
-CELDA <-> CITA : <sub>migracion de referencias</sub>\n<sub>y punteros desde las guias</sub>
-CARGA -up-> CELDA : <sub>sesiones planificadas</sub>
+CARGA -up-> CELDA : <sub>sesiones de evaluacion</sub>
 ASISTE -up-> CELDA : <sub>sesiones y catalogo</sub>
 SIGHOR -up-> CELDA : <sub>catalogo</sub>
 ACTIVITAT -up-> CELDA : <sub>imparticiones</sub>
 FEDATARIO -up-> CELDA : <sub>guias aprobadas por curso</sub>
 PRISMA -up-> CELDA : <sub>estado de las guias</sub>
 
+' === CELDA sobre satelites ===
+
+CELDA -down-> CITA : <sub>buscar / dar de alta referencias</sub>\n<sub>(CELDA copia la referencia)</sub>
+
 ' === Satelite a satelite ===
 
-CARGA -up-> SIGHOR : <sub>horarios reales</sub>
-ASISTE -up-> SIGHOR : <sub>aula y franja</sub>
+CARGA -up-> SIGHOR : <sub>sesiones por semana</sub>
+ASISTE -up-> SIGHOR : <sub>grupos, aula y franja</sub>
 PRISMA -up-> MERITOS
 PRISMA -up-> PULSO
 PRISMA -up-> ASISTE
 PRISMA -up-> CARGA
 PRISMA -up-> ACTIVITAT
 
-' === Consumos sobre GUIAA ===
+' === Consumos sobre el ERP de la universidad ===
 
-PULSO -up-> GUIAA : <sub>censo de alumnos</sub>
-ASISTE -up-> GUIAA : <sub>censo del grupo</sub>
-FEDATARIO -up-> GUIAA : <sub>itinerario del alumno</sub>
+FEDATARIO -up-> ERP : <sub>itinerario del alumno</sub>
 
 ' === Extensiones previstas ===
 
+PULSO .up.> ERP : <sub>censo de alumnos (v2)</sub>
 ACTIVITAT .up.> ASISTE : <sub>tutorias (fase 2)</sub>
 MERITOS .up.> ORCID : <sub>importar publicaciones</sub>
 CITA .up.> CROSSREF : <sub>alta de referencias por DOI</sub>
@@ -75,7 +75,6 @@ CELDA ..> MERITOS : <sub>breve descripcion del profesor (por decidir)</sub>
 legend left
   | Color | Estado |
   |<#C8E6C9>| construido |
-  |<#BBDEFB>| infraestructura |
   |<#FFF9C4>| Fase II |
   |<#FFCCBC>| Fase III |
   |<#E0E0E0>| sistema externo |
