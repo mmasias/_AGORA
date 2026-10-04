@@ -12,16 +12,14 @@ Externos a este mapa: el ecosistema los consume, no los construye.
 
 | Sistema | Expansión | Descripción |
 |---|---|---|
-| **COLMENA** | Componentes Ligeros para el Modelado de ERPs de Naturaleza Académica | Framework con el que se construyen los ERPs de la organización. Al compartir sus componentes, los ERPs exponen la misma interfaz: el ecosistema se integra una sola vez, contra COLMENA |
-| **SG** | | ERP de la organización |
-| **GUIAA** | Gestión Unificada de Investigación, Academia y Administración | ERP de una de las universidades, construido con componentes de COLMENA |
-| **AGORA** | Aplicación de Gestión y ORdenación Académica | ERP de otra de las universidades, equivalente a GUIAA, construido con componentes de COLMENA |
-| **PANAL** | Puerta de Acceso Normalizada a Aplicaciones LMS | LMS: intermediario entre campus virtuales y servicios académicos y administrativos |
+| **SG** | GUIAA / AGORA | ERPs de la organización |
+| **PANAL** | Puerta de Acceso Normalizada a Aplicaciones LMS | Servicio intermediario entre campus virtuales y servicios académicos y administrativos |
 | **CAMPUS** | | LMS: campus virtual |
+| ***COLMENA*** | Componentes Ligeros para el Modelado de ERPs de Naturaleza Académica | Framework con el que se construyen los ERPs de la organización. Al compartir sus componentes, los ERPs exponen la misma interfaz: el ecosistema se integra una sola vez, contra COLMENA |
 
 </div>
 
-En el resto del mapa, **"ERP de la universidad"** designa a SG, GUIAA o AGORA según corresponda: es la fuente de la identidad de los alumnos, la matrícula, el itinerario del alumno y el catálogo curricular de alto nivel.
+> *En el resto del mapa, **"ERP de la universidad"** designa a SG, GUIAA o AGORA según corresponda: es la fuente de la identidad de los alumnos, la matrícula, el itinerario del alumno y el catálogo curricular de alto nivel.*
 
 ### Datos maestros
 
